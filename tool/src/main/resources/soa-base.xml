@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:soa="http://www.lakala.com/schema/soa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.lakala.com/schema/soa http://www.lakala.com/schema/soa/soa.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:lklservice.properties</value>
+			</list>
+		</property>
+	</bean>
+	<soa:application name="${application.name}" owner="${application.owner}" organization="${application.organization}"/>
+    
+	<soa:registry address="${registry.address}"/>
+	
+	<soa:protocol name="remote" port="${protocol.port}"/>
+	<soa:protocol name="webservice" port="8080" server="servlet"  contextpath="${container.serviceContext}"/>
+    <soa:protocol name="rest" port="8080" contextpath="${container.serviceContext}/rest" server="servlet"/>
+</beans>

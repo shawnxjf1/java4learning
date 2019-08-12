@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>java-code-parent</artifactId>
+        <groupId>com.shawn</groupId>
+        <version>1.0.0-SNAPSHOT</version><!--FIXME 是否可以使用父类的properties-->
+    </parent>
+
+    <artifactId>tool</artifactId>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>3.2.9.RELEASE</spring.version>
+        <slf4j.api.version>1.7.21</slf4j.api.version>
+
+        <mybatis.spring.version>1.2.1</mybatis.spring.version>
+        <dbcp.version>1.4</dbcp.version>
+        <mybatis.version>3.2.3</mybatis.version>
+        <mysql.version>5.1.26</mysql.version>
+
+        <elasticsearch>2.3.3</elasticsearch>
+        <jodatime>2.9.4</jodatime>
+    </properties>
+
+    <dependencies>
+        <!--begin pdf 相关操作api-->
+        <dependency>
+            <groupId>com.itextpdf.tool</groupId>
+            <artifactId>xmlworker</artifactId>
+            <version>5.5.1</version>
+        </dependency>
+
+        <!-- 支持中文 -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-asian</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <!--end pdf 相关操作api-->
+
+        <dependency>
+            <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.12.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.5.15</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.api.version}</version>
+        </dependency>
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>tool</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <fork>true</fork>
+                    <source>1.8</source>
+                    <target>1.8</target><!--使用的是这里写的版本进行编译的-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+        <!--
+        错误1：Detected both log4j-over-slf4j.jar AND slf4j-log4j12.jar on the class path, preempting StackOverflow
+        a).org.apache.activemq引入的slf4j-log4j12.jar与pom文件中的 log4j-over-slf4j.jar循环调用导致的异常，从名字上可以看出slf4j-log4j12是将slf4j的日志桥接到log4j12上， log4j-over-slf4j则是将log4j的日志桥接到slf4j上，因而产生了循环调用。
+        -->

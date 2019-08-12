@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IndexMeta">
+
+	<resultMap type="com.lakala.soa.examples.mybatis.model.IndexMeta"
+		id="indexMetaList"><!-- type为返回列表元素的类全名或别名 -->
+		<id column="mId" property="mId" />
+		<result column="createTime" property="startTime" />
+		<result column="updateTime" property="endTime" />
+		<result column="indexName" property="indexName" />
+		<result column="typeName" property="typeName" />
+	</resultMap>
+
+    <insert id="addIndexMeta" parameterType="com.lakala.soa.examples.mybatis.model.IndexMeta">
+    <!-- useGeneratedKeys指定myBatis使用数据库自动生成的主键，并填充到keyProperty指定的属性上。如果未指定，返回对象拿不到生成的值 -->
+    <!-- 在sql语句当中 生成系统当前时间 -->
+		INSERT INTO indexMeta(createTime,updateTime,indexName,typeName) VALUES(now(),now(),#{indexName},#{typeName})
+	</insert>
+	
+	 <delete id="deleteIndexMeta" parameterType="com.lakala.soa.examples.mybatis.model.IndexMeta">
+		<!-- useGeneratedKeys指定myBatis使用数据库自动生成的主键，并填充到keyProperty指定的属性上。如果未指定，返回对象拿不到生成的值 -->
+		delete from indexMeta where 1 = 1
+		
+		<if test="indexName != null">
+			and indexName =#{indexName}
+		</if>
+		
+	    <!-- //attenion  mybatis int和string判断null，不需要!='null'来判断 -->
+		<if test="mId != null">
+			and mId =#{mId}
+		</if>
+		
+		<if test="typeName != null">
+			and typeName =#{typeName}
+		</if>
+	</delete>
+	
+</mapper>

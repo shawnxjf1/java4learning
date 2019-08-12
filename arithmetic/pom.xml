@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>java-code-parent</artifactId>
+        <groupId>com.shawn</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>arithmetic</artifactId>
+    <packaging>pom</packaging>
+	<dependencies>
+		<!-- Elasticsearch -->
+		
+<!-- add by xujianfeng end -->
+
+        <!--
+        错误1：Detected both log4j-over-slf4j.jar AND slf4j-log4j12.jar on the class path, preempting StackOverflow
+        a).org.apache.activemq引入的slf4j-log4j12.jar与pom文件中的 log4j-over-slf4j.jar循环调用导致的异常，从名字上可以看出slf4j-log4j12是将slf4j的日志桥接到log4j12上， log4j-over-slf4j则是将log4j的日志桥接到slf4j上，因而产生了循环调用。
+        -->
+
+		<!-- spring jars -->
+	</dependencies>
+
+	<build>
+		<finalName>dssp</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<fork>true</fork>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+

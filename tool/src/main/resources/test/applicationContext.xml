@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:soa="http://www.lakala.com/schema/soa"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+     <!-- 2016-11-20: 估计这个文件夹没有用，有profile了-->
+     <!-- 这里为测试用的容器配置文件  -->
+    <context:annotation-config/>
+    
+	<context:component-scan base-package="com.person.*"/> 
+	
+	<!--
+	
+	1.这里定义了indexMeta ，类里的service就需要去掉
+	  @Service
+      public class IndexMetaService { }
+    
+    2.IndexMetaService 里定义了 @Autowire sqlMap，<bean indexMeta></bean>下面<property>就需要去掉。
+	 -->
+	 <bean id="indexMeta" class="com.person.spring.IndexMetaService">
+    </bean>
+	
+</beans>

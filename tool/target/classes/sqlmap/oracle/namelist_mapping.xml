@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nameList">
+
+        <!--更新 取自 优酷 优负通 -->
+	<update id="updateCharge" parameterType="chargeUpdateExDto">
+		update t_charge
+		set version=version+1,update_time=sysdate
+		<if test="bankChargeSn != null">
+			,BANK_CHARGE_SN = #{bankChargeSn}
+		</if>
+		<if test="note != null">
+			,NOTE = #{note}
+		</if>
+		where CHARGE_ID=#{chargeId} and VERSION=#{version} and
+		CHARGE_AMOUNT=#{chargeAmount,jdbcType=NUMERIC} and
+		CHARGE_STATUS=#{oldStatus}
+	</update>
+	
+	
+ <resultMap id="nameListMap" type="com.lakala.bsfit.model.NameListBean">
+	  <id property="id" column="ID"></id>
+	  <result property="UniqueId" column="UNIQUE_ID"></result>
+	  <result property="Name" column="NAME"></result>
+	  <result property="Status" column="STATUS"></result>
+	  <result property="ExpiressDate" column="EXPIRES_DATE"></result>
+	  <result property="Comments" column="COMMENTS"></result>
+	  <result property="Source" column="SOURCE"></result>
+	  <result property="Tag" column="TAG"></result>
+	  <result property="Type" column="TYPE"></result>
+	  <result property="CreateTime" column="CREATE_TIME"></result>
+	  <result property="UpdateTime" column="UPDATE_TIME"></result>
+	  <result property="ModifyUser" column="MODIFIER"></result>
+	  <result property="CheckStatus" column="CHECK_STATUS"></result>
+	  <result property="Bussiness" column="BUSSINESS"></result>
+	  <result property="HisId" column="HIS_ID"></result>
+ </resultMap>
+     <!-- 使用接口的方式 -->
+	<select id="testfindByName" resultMap="nameListMap" parameterType="map" >
+		  SELECT ID  ,
+		      UNIQUE_ID    ,
+		      NAME         ,
+		      to_char(STATUS)    STATUS   ,
+		      to_char(EXPIRES_DATE,'yyyymmddhh24miss') EXPIRES_DATE,
+		      COMMENTS     ,
+		      SOURCE       ,
+		      TAG          ,
+		      TYPE         ,
+		      to_char(CREATE_TIME,'yyyymmddhh24miss')  CREATE_TIME,
+		      to_char(UPDATE_TIME,'yyyymmddhh24miss') UPDATE_TIME  ,
+		      MODIFIER     ,
+		      to_char(CHECK_STATUS) CHECK_STATUS ,
+		      BUSSINESS    ,
+		      HIS_ID        FROM NAME_list where rownum <![CDATA[<=]]>10
+    </select>  
+ 
+	<!-- 使用接口的方式 -->
+	<select id="findByNameList" resultMap="nameListMap" parameterType="map" >
+	select * from (
+		select rownum rs,A.* from(
+		  SELECT ID  ,
+		      UNIQUE_ID    ,
+		      NAME         ,
+		      to_char(STATUS)    STATUS   ,
+		      to_char(EXPIRES_DATE,'yyyymmddhh24miss') EXPIRES_DATE,
+		      COMMENTS     ,
+		      SOURCE       ,
+		      TAG          ,
+		      TYPE         ,
+		      to_char(CREATE_TIME,'yyyymmddhh24miss')  CREATE_TIME,
+		      to_char(UPDATE_TIME,'yyyymmddhh24miss') UPDATE_TIME  ,
+		      MODIFIER     ,
+		      to_char(CHECK_STATUS) CHECK_STATUS ,
+		      BUSSINESS    ,
+		      HIS_ID        FROM NAME_list where UNIQUE_ID=#{uniqueId} and TAG=#{tag}
+		      order by ID asc )A where rownum <![CDATA[<]]> #{pageEnd}
+      ) B where rs <![CDATA[>=]]> #{pageStart}
+    </select>  
+     
+     <!-- 使用接口的方式 -->
+	<select id="findByName" resultMap="nameListMap" parameterType="map" >
+		  SELECT ID  ,
+		      UNIQUE_ID    ,
+		      NAME         ,
+		      to_char(STATUS)    STATUS   ,
+		      to_char(EXPIRES_DATE,'yyyymmddhh24miss') EXPIRES_DATE,
+		      COMMENTS     ,
+		      SOURCE       ,
+		      TAG          ,
+		      TYPE         ,
+		      to_char(CREATE_TIME,'yyyymmddhh24miss')  CREATE_TIME,
+		      to_char(UPDATE_TIME,'yyyymmddhh24miss') UPDATE_TIME  ,
+		      MODIFIER     ,
+		      to_char(CHECK_STATUS) CHECK_STATUS ,
+		      BUSSINESS    ,
+		      HIS_ID        FROM NAME_list where UNIQUE_ID=#{uniqueId} and TAG=#{tag} and rownum <![CDATA[<=]]>1
+    </select>  
+	
+</mapper>
