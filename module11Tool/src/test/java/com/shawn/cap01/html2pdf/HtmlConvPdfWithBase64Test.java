@@ -21,10 +21,10 @@ public class HtmlConvPdfWithBase64Test {
         // 加上font才能够把中文输出出来<br>
         HtmlConvPdfWithBase64.convertHtmlToPdf(sourcePath, pdfPath, fontPath);
         /**
+         *  执行结果<br>
          * 1. fontPath :D:\500-java\j2seCode\module11Tool\src\test\java/com/shawn/cap01/html2pdf/\SIMSUN.TTC 里面有/也有\不影响文件生成<br>
          * 2.该测试用例是可以生成pdf*
          */
-
 
         /**
          * 待完善，log4j.xml还没有配置上<br>
