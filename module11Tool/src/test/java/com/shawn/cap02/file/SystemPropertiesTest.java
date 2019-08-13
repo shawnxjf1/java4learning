@@ -32,6 +32,7 @@ public class SystemPropertiesTest {
 
      @Test
      public void testFileDefaultPath(){
+        //new File("src/test/java")默认从工程路径下
          File f=new File("src/test/java/" + RelativeToFullPathUtil.getPackagePath(SystemPropertiesTest.class) + SystemPropertiesTest.class.getSimpleName() + ".java");
          String fileStr = FileUtil.readString(f, Charset.forName("UTF-8"));
          System.out.println(fileStr);
