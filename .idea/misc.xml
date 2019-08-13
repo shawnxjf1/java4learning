@@ -7,12 +7,14 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/arithmetic/pom.xml" />
         <option value="$PROJECT_DIR$/module10Dao/pom.xml" />
+        <option value="$PROJECT_DIR$/module11Tool/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/arithmetic/module10_Dao/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/tool/pom.xml" />
       </set>
     </option>
   </component>

@@ -34,3 +34,7 @@ parent
 ## 基础的组件
 对于lombok\slf4j等可以放在父工程里且定义好版本
 
+
+## 各模块说明
+module10Dao: dao相关操作，比如jdbc、mybatis等等<br>
+
