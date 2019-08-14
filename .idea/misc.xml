@@ -5,7 +5,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/arithmetic/pom.xml" />
         <option value="$PROJECT_DIR$/module10Dao/pom.xml" />
         <option value="$PROJECT_DIR$/module11Tool/pom.xml" />
       </list>

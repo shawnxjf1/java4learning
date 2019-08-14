@@ -13,7 +13,8 @@
 
     <modules>
         <module>arithmetic</module>
-        <module>tool</module>
+        <module>module11Tool</module>
+        <module>module10Dao</module>
     </modules>
 
     <properties>
